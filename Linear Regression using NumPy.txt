@@ -1,0 +1,18 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def linear_regression(x, y):
+    X = np.vstack([np.ones(len(x)), x]).T
+    beta = np.linalg.inv(X.T @ X) @ X.T @ y
+    return beta
+
+# Example usage
+x_data = np.array([1, 2, 3, 4, 5])
+y_data = np.array([2, 3, 4, 5, 6])
+
+slope, intercept = linear_regression(x_data, y_data)
+
+plt.scatter(x_data, y_data, label='Data Points')
+plt.plot(x_data, slope*x_data + intercept, color='red', label='Linear Regression')
+plt.legend()
+plt.show()
